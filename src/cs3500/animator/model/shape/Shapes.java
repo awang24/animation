@@ -1,0 +1,156 @@
+package cs3500.animator.model.shape;
+
+import java.awt.Color;
+
+/**
+ * This is an interface representation of a shape.
+ */
+
+public interface Shapes {
+
+  /**
+   * Returns the string representation of the shape.
+   *
+   * @return String representation of the shape.
+   */
+  String getState();
+
+  /**
+   * Returns the name of the shape.
+   *
+   * @return string representation of the name
+   */
+  String getName();
+
+  /**
+   * Returns the shape type of the shape.
+   *
+   * @return the ShapeType of the shape
+   */
+  ShapeType getShapeType();
+
+  /**
+   * Returns the appear time of the shape.
+   *
+   * @return the appear time of the shape
+   */
+  int getAppear();
+
+  /**
+   * Returns the disappear time of the shape.
+   *
+   * @return the disappear time of the shape
+   */
+  int getDisappear();
+
+  /**
+   * Returns the posn of the shape.
+   *
+   * @return the posn of the shape
+   */
+  Posn getPosn();
+
+  /**
+   * Returns the color of the shape.
+   *
+   * @return the color of the shape
+   */
+  Color getColor();
+
+  /**
+   * Returns the first dimension of the shape.
+   *
+   * @return the first dimension of the shape
+   */
+  double getD1();
+
+  /**
+   * Returns the second dimension of the shape.
+   *
+   * @return the second dimension of the shape
+   */
+  double getD2();
+
+  /**
+   * Sets the type of this shape to another type.
+   *
+   * @param type the ShapeType to change this shape to
+   */
+  void setType(ShapeType type);
+
+  /**
+   * Sets the appear time of this shape to a new time.
+   *
+   * @param newAppear the appear time to change this shape to
+   * @throws IllegalArgumentException if newAppear is negative or if the newAppear is greater than
+   *                                  the disappear time
+   */
+  void setAppear(int newAppear);
+
+  /**
+   * Sets the disappear time of this shape to a new time.
+   *
+   * @param newDisapper the disappear time to change this shape to
+   * @throws IllegalArgumentException if newDisappear is negative or if the newDisppear is smaller
+   *                                  than the appear time
+   */
+  void setDisappear(int newDisapper);
+
+  /**
+   * Sets the coordinate of this shape to a new coordinate.
+   *
+   * @param newP the coordinate to change this shape to
+   */
+  void setPosn(Posn newP);
+
+  /**
+   * Sets the color of this shape to a new color.
+   *
+   * @param c the color to change this shape to
+   */
+  void setColor(Color c);
+
+  /**
+   * Sets the dimensions of this shape.
+   *
+   * @param d1 the first dimension to change this shape to
+   * @throws IllegalArgumentException if the double is negative
+   */
+  void setD1(double d1);
+
+  /**
+   * Sets the dimensions of this shape.
+   *
+   * @param d2 the second dimension to change this shape to
+   * @throws IllegalArgumentException if the double is negative
+   */
+  void setD2(double d2);
+
+  /**
+   * Returns the string representation of the location.
+   *
+   * @return the string representation of the location
+   */
+  String location();
+
+  /**
+   * Returns the dimension tag of the first dimension.
+   *
+   * @return dimension tag of the first dimension
+   */
+  String d1TagString();
+
+  /**
+   * Returns the dimension tag of the second dimension.
+   *
+   * @return dimension tag of the second dimension
+   */
+  String d2TagString();
+
+  /**
+   * Returns the dimension of the shape.
+   *
+   * @return the string represenation of the dimension of the shape
+   */
+  String getDimensions();
+}
