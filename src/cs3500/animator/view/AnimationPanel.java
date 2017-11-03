@@ -8,6 +8,7 @@ import java.util.List;
 import javax.swing.*;
 
 import cs3500.animator.model.animation.Animations;
+import cs3500.animator.model.shape.CreateShapeVisitor;
 import cs3500.animator.model.shape.Posn;
 import cs3500.animator.model.shape.ShapeType;
 import cs3500.animator.model.shape.Shapes;
@@ -15,12 +16,12 @@ import cs3500.animator.model.shape.Shapes;
 public class AnimationPanel extends JPanel {
 
   private List<Shapes> shapes;
-  private List<Animations> animations;
+  //private List<Animations> animations;
 
   public AnimationPanel() {
     super();
     shapes = new ArrayList<Shapes>();
-    animations = new ArrayList<Animations>();
+    //animations = new ArrayList<Animations>();
     this.setBackground(Color.WHITE);
   }
 
@@ -64,9 +65,16 @@ public class AnimationPanel extends JPanel {
 
   public void setShapes(List<Shapes> shapes) {
     this.shapes = shapes;
+    /*List<Shapes> newList = new ArrayList<Shapes>();
+
+    for (int i = 0; i < shapes.size(); i++) {
+      Shapes newShape = shapes.get(i).accept(new CreateShapeVisitor());
+      newList.add(newShape);
+    }
+    this.shapes = newList;*/
   }
 
-  public void setAnimations(List<Animations> animations) {
+/*  public void setAnimations(List<Animations> animations) {
     this.animations = animations;
-  }
+  }*/
 }

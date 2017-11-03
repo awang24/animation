@@ -1,8 +1,6 @@
 package cs3500.animator;
 
-import java.io.IOException;
 import java.io.StringReader;
-import java.nio.CharBuffer;
 import java.util.Scanner;
 
 import javax.swing.*;
@@ -12,10 +10,10 @@ import cs3500.animator.controller.SimpleAnimationModelBuilder;
 import cs3500.animator.controller.TextController;
 import cs3500.animator.controller.VisualController;
 import cs3500.animator.model.IAnimationModel;
-import cs3500.animator.model.SimpleAnimationModel;
 import cs3500.animator.starter.AnimationFileReader;
 import cs3500.animator.starter.TweenModelBuilder;
 import cs3500.animator.view.IView;
+import cs3500.animator.view.SVGView;
 import cs3500.animator.view.TextualView;
 import cs3500.animator.view.VisualAnimationView;
 
@@ -104,10 +102,10 @@ public class EasyAnimator {
         view = new TextualView(speed, model);
         break;
       case "visual":
-        view = new VisualAnimationView(speed, model);
+        view = new VisualAnimationView(speed, model.getShapes());
         break;
       case "svg":
-        //view = new SVGView(speed, model);
+        view = new SVGView(speed, model);
         break;
       default:
         JFrame frame = new JFrame();
@@ -124,7 +122,7 @@ public class EasyAnimator {
         controller = new VisualController(speed, model, (VisualAnimationView) view);
         break;
       case "svg":
-        //view = new SVGView(speed, model);
+        controller = new TextController(model, (TextualView)view, output);
         break;
       default:
         JFrame frame = new JFrame();

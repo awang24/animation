@@ -1,9 +1,12 @@
 package cs3500.animator.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import cs3500.animator.model.IAnimationModel;
 import cs3500.animator.model.animation.Animations;
+import cs3500.animator.model.shape.CreateShapeVisitor;
+import cs3500.animator.model.shape.Shapes;
 import cs3500.animator.view.IVisualView;
 
 /**
@@ -33,7 +36,7 @@ public class VisualController implements IAnimationController {
 
   @Override
   public void start() {
-    this.view.refresh();
+    //this.view.refresh();
     this.isAnimationStarted = true;
     long startTime = System.currentTimeMillis();
     long timeElapsed = 0;
@@ -41,18 +44,40 @@ public class VisualController implements IAnimationController {
     double secondsElapsed = 0;
     double unitsElapsed = 0;
     List<Animations> animations = model.getAnimations();
+    List<Shapes> shapes = model.getShapes();
+
+    List<Shapes> newListShapes = new ArrayList<Shapes>();
+
+    for (int i = 0; i < shapes.size(); i++) {
+      Shapes newShape = shapes.get(i).accept(new CreateShapeVisitor());
+      newListShapes.add(newShape);
+    }
 
     while (this.isAnimationStarted) {
       timeElapsed = System.currentTimeMillis() - startTime;
       secondsElapsed = timeElapsed / 1000.0;
       unitsElapsed = secondsElapsed * tempo;
+
+      for (int i = 0; i < animations.size(); i++) {
+        Animations currentAnimation = animations.get(i);
+        Shapes animationShape = currentAnimation.getShape();
+        for (int j = 0; j < newListShapes.size(); j++) {
+          Shapes currentShape = newListShapes.get(j);
+          if (currentShape.getName().equals(animationShape.getName())) {
+            currentAnimation.setShape(currentShape);
+          }
+        }
+      }
+
       for (int i = 0; i < animations.size(); i++) {
         Animations current = animations.get(i);
         int start = current.getStart();
         int end = current.getEnd();
+        //this.view.setShapes(newListShapes);
 
         if (start <= unitsElapsed && end >= unitsElapsed) {
           current.animate(unitsElapsed);
+          this.view.setShapes(newListShapes);
           this.view.refresh();
         }
       }

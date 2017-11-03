@@ -41,7 +41,7 @@ public class Utils {
   }
 
   /**
-   * Returns the string representation of a color.
+   * Returns the string representation of a color in float representation.
    *
    * @param c the color
    * @return string representation of the color
@@ -49,6 +49,16 @@ public class Utils {
   public static String getColorString(Color c) {
     return "(" + Utils.getColorFloat(c.getRed()) + "," + Utils.getColorFloat(c.getGreen()) + ","
             + Utils.getColorFloat(c.getBlue()) + ")";
+  }
+
+  /**
+   * Returns the string representation of a color.
+   *
+   * @param c the color
+   * @return string representation of the color.
+   */
+  public static String getNotFloatColorString(Color c) {
+    return "(" + c.getRed() + "," + c.getGreen() + "," + c.getBlue() + ")";
   }
 
   /**

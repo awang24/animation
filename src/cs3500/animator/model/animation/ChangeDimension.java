@@ -1,6 +1,7 @@
 package cs3500.animator.model.animation;
 
 import cs3500.animator.model.Utils;
+import cs3500.animator.model.shape.CreateShapeVisitor;
 import cs3500.animator.model.shape.Shapes;
 
 /**
@@ -44,6 +45,9 @@ public class ChangeDimension extends AAnimations {
     double changeInTime = (double)(currentTime - this.getStart())
             / (double)(this.getEnd() - this.getStart());
 
+    //Shapes shape = this.getShape();
+   // Shapes newShape = shape.accept(new CreateShapeVisitor());
+
     if ((currentTime > this.getEnd()) || (currentTime < this.getStart())) {
       // do nothing
     } else {
@@ -51,7 +55,10 @@ public class ChangeDimension extends AAnimations {
       double d2 = this.originalD2 + (changeInTime * changeD2);
       this.getShape().setD1(d1);
       this.getShape().setD2(d2);
+      //newShape.setD1(d1);
+      //newShape.setD2(d2);
     }
+    //return newShape;
   }
 
   @Override
@@ -75,5 +82,24 @@ public class ChangeDimension extends AAnimations {
   public void changeField(Shapes s) {
     s.setD1(newD1);
     s.setD2(newD2);
+  }
+
+  @Override
+  public String toSVGTag(double tempo) {
+    double begin = (this.getStart() / tempo) * 1000;
+    double end = (this.getEnd() / tempo) * 1000;
+    double dur = end - begin;
+
+    String svg = "";
+    // x coordinate
+    svg += "<animateTransform attributeName=\"transform\" attributeType=\"XML\" type=\"scale\" "
+            + "begin=\"" + begin + "\" dur=\"" + dur + "\" from=\"" + this.originalD1 + "\" to=\""
+            + this.newD1 + "\" fill=\"freeze\" /> \n";
+
+    svg += "<animateTransform attributeName=\"transform\" attributeType=\"XML\" type=\"scale\" "
+            + "begin=\"" + begin + "\" dur=\"" + dur + "\" from=\"" + this.originalD2 + "\" to=\""
+            + this.newD2 + "\" fill=\"freeze\" />\n";
+
+    return svg;
   }
 }

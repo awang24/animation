@@ -37,6 +37,16 @@ public class TextualView implements ITextView {
   }
 
   @Override
+  public IAnimationModel getModel() {
+    return model;
+  }
+
+  @Override
+  public double getTempo() {
+    return tempo;
+  }
+
+  @Override
   public String getDescription() {
     List<Shapes> shapes = model.getShapes();
     List<Animations> animations = model.getAnimations();

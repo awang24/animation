@@ -9,6 +9,14 @@ import java.awt.Color;
 public interface Shapes {
 
   /**
+   * Returns the appropriate shape with the appropriate changes made to it.
+   *
+   * @param visitor visitor that the shape will be used on
+   * @return the shape that has the correct changes made to it
+   */
+  Shapes accept(IShapeVisitor visitor);
+
+  /**
    * Returns the string representation of the shape.
    *
    * @return String representation of the shape.
@@ -153,4 +161,11 @@ public interface Shapes {
    * @return the string represenation of the dimension of the shape
    */
   String getDimensions();
+
+  /**
+   * Returns the svg tag of the shape.
+   *
+   * @return String svg representation of the shape
+   */
+  String toSVGTag();
 }

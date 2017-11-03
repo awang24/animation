@@ -31,7 +31,7 @@ public interface IVisualView extends IView{
    * Sets the list of shapes to see.
    * @param shapes List of shapes to add
    **/
-  //void setShapes(List<Shapes> shapes);
+  void setShapes(List<Shapes> shapes);
 
   /**
    * Sets the list of animations to see.

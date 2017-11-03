@@ -9,6 +9,7 @@ import cs3500.animator.model.animation.Animations;
 import cs3500.animator.model.animation.ChangeColor;
 import cs3500.animator.model.animation.ChangeDimension;
 import cs3500.animator.model.animation.MoveAnimation;
+import cs3500.animator.model.shape.CreateShapeVisitor;
 import cs3500.animator.model.shape.Oval;
 import cs3500.animator.model.shape.Posn;
 import cs3500.animator.model.shape.RectangleShape;
@@ -36,7 +37,6 @@ public class SimpleAnimationModelBuilder implements TweenModelBuilder<IAnimation
           float xRadius, float yRadius,
           float red, float green, float blue,
           int startOfLife, int endOfLife) {
-    System.out.println("supposed to be x " + cx + " y " + cy);
     Posn p = new Posn(cx, cy);
     Color c = new Color(red, green, blue);
     Shapes shape = new Oval(name, startOfLife, endOfLife, p, c, xRadius, yRadius);
@@ -51,7 +51,6 @@ public class SimpleAnimationModelBuilder implements TweenModelBuilder<IAnimation
           float width, float height,
           float red, float green, float blue,
           int startOfLife, int endOfLife) {
-    System.out.println("supposed to be x " + lx + " y " + ly);
     Posn p = new Posn(lx, ly);
     Color c = new Color(red, green, blue);
     Shapes shape = new RectangleShape(name, startOfLife, endOfLife, p, c, width, height);
@@ -71,7 +70,9 @@ public class SimpleAnimationModelBuilder implements TweenModelBuilder<IAnimation
     for (int i = 0; i < loshapes.size(); i++) {
       Shapes current = loshapes.get(i);
       if (current.getName().equals(name)) {
-        s = current;
+        //s = current;
+        s = current.accept(new CreateShapeVisitor());
+        s.setPosn(origin);
         //System.out.println(name + " before add x " + s.getPosn().getX() + " y " + s.getPosn().getY());
       }
     }
@@ -100,7 +101,9 @@ public class SimpleAnimationModelBuilder implements TweenModelBuilder<IAnimation
     for (int i = 0; i < loshapes.size(); i++) {
       Shapes current = loshapes.get(i);
       if (current.getName().equals(name)) {
-        s = current;
+        s = current.accept(new CreateShapeVisitor());
+        s.setColor(oldColor);
+        //s = current;
       }
     }
     try {
@@ -122,7 +125,10 @@ public class SimpleAnimationModelBuilder implements TweenModelBuilder<IAnimation
     for (int i = 0; i < loshapes.size(); i++) {
       Shapes current = loshapes.get(i);
       if (current.getName().equals(name)) {
-        s = current;
+        s = current.accept(new CreateShapeVisitor());
+        s.setD1(fromSx);
+        s.setD2(fromSy);
+        //s = current;
       }
     }
     try {

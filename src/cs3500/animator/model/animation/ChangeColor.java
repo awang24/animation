@@ -3,6 +3,8 @@ package cs3500.animator.model.animation;
 import java.awt.Color;
 
 import cs3500.animator.model.Utils;
+import cs3500.animator.model.shape.CreateShapeVisitor;
+import cs3500.animator.model.shape.IShapeVisitor;
 import cs3500.animator.model.shape.Shapes;
 
 /**
@@ -45,6 +47,9 @@ public class ChangeColor extends AAnimations {
     float changeInTime = (float) (currentTime - this.getStart())
             / (float) (this.getEnd() - this.getStart());
 
+    //Shapes shape = this.getShape();
+    //Shapes newShape = shape.accept(new CreateShapeVisitor());
+
     if ((currentTime > this.getEnd()) || (currentTime < this.getStart())) {
       // won't do anything
     } else {
@@ -53,8 +58,12 @@ public class ChangeColor extends AAnimations {
       float newBlue = currentBlue + (changeBlue * changeInTime);
 
       Color newColor = new Color(newRed, newGreen, newBlue);
+      //newShape.setColor(newColor);
       this.getShape().setColor(newColor);
     }
+    //return newShape;
+    // MAYBE works
+
   }
 
   @Override
@@ -75,5 +84,16 @@ public class ChangeColor extends AAnimations {
   @Override
   public void changeField(Shapes s) {
     s.setColor(dest);
+  }
+
+  @Override
+  public String toSVGTag(double tempo) {
+    double begin = (this.getStart() / tempo) * 1000;
+    double end = (this.getEnd() / tempo) * 1000;
+    double dur = end - begin;
+
+    return "<animate attributeName=\"fill\" attributeType=\"xml\" begin=\"" + begin + "\" dur=\""
+            + dur + "\" from=\"rgb" + Utils.getNotFloatColorString(this.origin) + "\" to=\""
+            + Utils.getNotFloatColorString(this.dest) + "\" fill=\"freeze\" />\n";
   }
 }

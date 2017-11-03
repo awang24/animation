@@ -27,6 +27,11 @@ public class Oval extends AShape {
   }
 
   @Override
+  public Shapes accept(IShapeVisitor visitor) {
+    return visitor.visit(this);
+  }
+
+  @Override
   public String location() {
     return "Center: " + Utils.getPosnString(this.getPosn());
   }
@@ -39,5 +44,13 @@ public class Oval extends AShape {
   @Override
   public String d2TagString() {
     return "Y radius: ";
+  }
+
+  @Override
+  public String toSVGTag() {
+    return "<ellipse id=\"" + this.getName() + "\" cx=\"" + this.getPosn().getX() + "\" cy=\""
+            + this.getPosn().getY() + "\" rx=\"" + this.getD1() + "\" ry=\"" + this.getD2()
+            + "\" fill=\"rgb(" + this.getColor().getRed() + "," + this.getColor().getGreen() + ","
+            + this.getColor().getBlue() +")\" visibility=\"visible\">";
   }
 }

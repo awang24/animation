@@ -2,13 +2,14 @@ package cs3500.animator.view;
 
 import java.util.List;
 
+import cs3500.animator.model.IAnimationModel;
 import cs3500.animator.model.animation.Animations;
 import cs3500.animator.model.shape.Shapes;
 
 /**
  * The text view interface.
  */
-public interface ITextView extends IView{
+public interface ITextView extends IView {
 
   /**
    * Gets the string representation/text view of the animation.
@@ -22,4 +23,17 @@ public interface ITextView extends IView{
    */
   void writeOut(String fileName);
 
+  /**
+   * Returns the model that the view is using.
+   *
+   * @return the model that the view is using
+   */
+  IAnimationModel getModel();
+
+  /**
+   * Returns the tempo of the view.
+   *
+   * @return the tempo of the view
+   */
+  double getTempo();
 }

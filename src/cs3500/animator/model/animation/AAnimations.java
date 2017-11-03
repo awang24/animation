@@ -63,4 +63,9 @@ public abstract class AAnimations implements Animations {
     return this.type;
   }
 
+  @Override
+  public void setShape(Shapes s) {
+    this.shape = s;
+  }
+
 }

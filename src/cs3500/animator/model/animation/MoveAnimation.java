@@ -1,6 +1,7 @@
 package cs3500.animator.model.animation;
 
 import cs3500.animator.model.Utils;
+import cs3500.animator.model.shape.CreateShapeVisitor;
 import cs3500.animator.model.shape.Posn;
 import cs3500.animator.model.shape.Shapes;
 
@@ -42,6 +43,9 @@ public class MoveAnimation extends AAnimations {
     double changeInTime = (currentTime - this.getStart())
             / (double) (this.getEnd() - this.getStart());
 
+    //Shapes shape = this.getShape();
+    //Shapes newShape = shape.accept(new CreateShapeVisitor());
+
     if ((currentTime > this.getEnd()) || (currentTime < this.getStart())) {
       // doesn't do anything
     } else {
@@ -50,8 +54,10 @@ public class MoveAnimation extends AAnimations {
 
       Posn newPosn = new Posn(newX, newY);
 
+      //newShape.setPosn(newPosn);
       this.getShape().setPosn(newPosn);
     }
+    //return newShape;
   }
 
   @Override

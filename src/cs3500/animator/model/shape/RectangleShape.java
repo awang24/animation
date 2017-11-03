@@ -27,6 +27,11 @@ public class RectangleShape extends AShape {
   }
 
   @Override
+  public Shapes accept(IShapeVisitor visitor) {
+    return visitor.visit(this);
+  }
+
+  @Override
   public String location() {
     return "Lower-left corner: " + Utils.getPosnString(this.getPosn());
   }
@@ -39,6 +44,14 @@ public class RectangleShape extends AShape {
   @Override
   public String d2TagString() {
     return "Height: ";
+  }
+
+  @Override
+  public String toSVGTag() {
+    return "<rect id=\"" + this.getName() + "\" x=\"" + this.getPosn().getX() + "\" y=\""
+            + this.getPosn().getY() + "\" width=\"" + this.getD1() + "\" height=\"" + this.getD2()
+            + "\" fill=\"rgb(" + this.getColor().getRed() + "," + this.getColor().getGreen() + ","
+            + this.getColor().getBlue() +")\" visibility=\"visible\">";
   }
 
 }
