@@ -185,7 +185,8 @@ public class SimpleAnimationModelTest {
     this.aop.addShape(this.oval2);
     this.aop.addAnimations(this.changeEclipseColor);
     this.aop.addAnimations(this.changeEclipseDimension);
-    assertEquals(new ArrayList<Shapes>(Arrays.asList(this.rect1, this.oval2)), this.aop.getShapes());
+    assertEquals(new ArrayList<Shapes>(Arrays.asList(this.rect1, this.oval2)),
+            this.aop.getShapes());
   }
 
   // Test for getting the list of animations
@@ -195,8 +196,8 @@ public class SimpleAnimationModelTest {
     this.aop.addShape(this.oval2);
     this.aop.addAnimations(this.changeEclipseColor);
     this.aop.addAnimations(this.changeEclipseDimension);
-    assertEquals(new ArrayList<Animations>
-                    (Arrays.asList(this.changeEclipseColor, this.changeEclipseDimension)),
+    assertEquals(new ArrayList<Animations>(Arrays.asList(this.changeEclipseColor,
+            this.changeEclipseDimension)),
             this.aop.getAnimations());
   }
 

@@ -12,6 +12,7 @@ import cs3500.animator.controller.SimpleAnimationModelBuilder;
 import cs3500.animator.controller.TextController;
 import cs3500.animator.controller.VisualController;
 import cs3500.animator.model.IAnimationModel;
+import cs3500.animator.model.Utils;
 import cs3500.animator.starter.AnimationFileReader;
 import cs3500.animator.starter.TweenModelBuilder;
 import cs3500.animator.view.IView;
@@ -23,6 +24,11 @@ import cs3500.animator.view.VisualAnimationView;
  * Represents an animation runner. Compiles the MVC to represent an animation.
  */
 public class EasyAnimator {
+  /**
+   * Main method to run easy animation compiling model, view and controller.
+   *
+   * @param args arguments for the main method
+   */
   public static void main(String[] args) {
 
     Readable r = new StringReader(String.join(" ", args));
@@ -92,22 +98,14 @@ public class EasyAnimator {
               "Invalid file", "Error", JOptionPane.ERROR_MESSAGE);
     }
 
-    switch (viewType) {
-      case "text":
-        view = new TextualView(speed, model);
-        break;
-      case "visual":
-        view = new VisualAnimationView(speed, model.getShapes());
-        break;
-      case "svg":
-        view = new SVGView(speed, model);
-        break;
-      default:
-        JFrame frame = new JFrame();
-        frame.setSize(100, 100);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        JOptionPane.showMessageDialog(frame, "Invalid view type",
-                "Error", JOptionPane.ERROR_MESSAGE);
+    try {
+      view = Utils.createView(viewType, model, speed);
+    } catch (Exception e) {
+      JFrame frame = new JFrame();
+      frame.setSize(100, 100);
+      frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      JOptionPane.showMessageDialog(frame, "Invalid view type",
+              "Error", JOptionPane.ERROR_MESSAGE);
     }
 
     switch (viewType) {
@@ -118,7 +116,7 @@ public class EasyAnimator {
         controller = new VisualController(speed, model, (VisualAnimationView) view);
         break;
       case "svg":
-        controller = new SVGController(model, (SVGView) view, output);
+        controller = new SVGController((SVGView) view, output);
         break;
       default:
         JFrame frame = new JFrame();

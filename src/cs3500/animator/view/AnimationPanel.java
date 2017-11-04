@@ -14,7 +14,8 @@ import cs3500.animator.model.shape.ShapeType;
 import cs3500.animator.model.shape.Shapes;
 
 /**
- * A class to represent a panel on which to draw animations.
+ * A class to represent a panel on which to draw animations. Extends JPanel to allow for overriding
+ * paintComponent.
  */
 public class AnimationPanel extends JPanel {
 
@@ -61,6 +62,11 @@ public class AnimationPanel extends JPanel {
     g2d.setTransform(originalTransform);
   }
 
+  /**
+   * Sets the list of shapes of the panel to the given the list of shapes.
+   *
+   * @param shapes list of shapes to change the field list of shapes to
+   */
   public void setShapes(List<Shapes> shapes) {
     this.shapes = shapes;
   }

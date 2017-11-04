@@ -278,7 +278,8 @@ public class AnimationsTest {
   public void testToSVGTag() {
     // test for changing color
     assertEquals("<animate attributeType=\"xml\" begin=\"500.0ms\" "
-                    + "dur=\"500.0ms\" attributeName=\"fill\" from=\"rgb(0,0,0)\" to=\"rgb(255,0,0)\" "
+                    + "dur=\"500.0ms\" attributeName=\"fill\" from=\"rgb(0,0,0)\" "
+                    + "to=\"rgb(255,0,0)\" "
                     + "fill=\"freeze\" />\n",
             this.changeEclipseColor.toSVGTag(10));
     assertEquals("<animate attributeType=\"xml\" begin=\"500.0ms\" dur=\"500.0ms\" "
@@ -287,18 +288,20 @@ public class AnimationsTest {
             this.changeRectColor.toSVGTag(10));
 
     // test for changing dimension
-    assertEquals("<animateTransform attributeType=\"xml\" type=\"scale\" "
-            + "begin=\"1100.0ms\" dur=\"100.0ms\" attributeName=\"transform\" from=\"20.0\" "
-            + "to=\"15.5\" fill=\"freeze\" /> \n"
-            + "<animateTransform attributeType=\"xml\" type=\"scale\" begin=\"1100.0ms\" "
-            + "dur=\"100.0ms\" attributeName=\"transform\" from=\"25.5\" "
-            + "to=\"15.5\" fill=\"freeze\" />\n", this.changeEclipseDimension.toSVGTag(10));
-    assertEquals("<animateTransform attributeType=\"xml\" type=\"scale\" "
-            + "begin=\"1100.0ms\" dur=\"100.0ms\" attributeName=\"transform\" from=\"20.0\" "
-            + "to=\"15.5\" fill=\"freeze\" /> \n"
-            + "<animateTransform attributeType=\"xml\" type=\"scale\" begin=\"1100.0ms\" "
-            + "dur=\"100.0ms\" attributeName=\"transform\" from=\"25.5\" "
-            + "to=\"15.5\" fill=\"freeze\" />\n", this.changeRectDimension.toSVGTag(10));
+    assertEquals("<animate attributeType=\"xml\" type=\"scale\" begin=\"1100.0ms\" "
+                    + "dur=\"100.0ms\" attributeName=\"rx\" from=\"20.0\" to=\"15.5\" "
+                    + "fill=\"freeze\" /> \n"
+                    + "<animate attributeType=\"xml\" type=\"scale\" begin=\"1100.0ms\" "
+                    + "dur=\"100.0ms\" "
+                    + "attributeName=\"ry\" from=\"25.5\" to=\"15.5\" fill=\"freeze\" />\n",
+            this.changeEclipseDimension.toSVGTag(10));
+    assertEquals("<animate attributeType=\"xml\" type=\"scale\" begin=\"1100.0ms\" "
+                    + "dur=\"100.0ms\" attributeName=\"width\" from=\"20.0\" to=\"15.5\" "
+                    + "fill=\"freeze\" /> \n"
+                    + "<animate attributeType=\"xml\" type=\"scale\" begin=\"1100.0ms\" "
+                    + "dur=\"100.0ms\""
+                    + " attributeName=\"height\" from=\"25.5\" to=\"15.5\" fill=\"freeze\" />\n",
+            this.changeRectDimension.toSVGTag(10));
 
     // test for moving
     assertEquals("<animate attributeType=\"xml\" begin=\"800.0ms\" dur=\"200.0ms\" "

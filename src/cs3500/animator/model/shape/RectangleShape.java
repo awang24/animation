@@ -69,4 +69,14 @@ public class RectangleShape extends AShape {
     return "</rect>\n";
   }
 
+  @Override
+  public String svgD1Tag() {
+    return "width";
+  }
+
+  @Override
+  public String svgD2Tag() {
+    return "height";
+  }
+
 }

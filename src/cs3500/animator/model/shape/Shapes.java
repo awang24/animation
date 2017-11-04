@@ -183,11 +183,24 @@ public interface Shapes {
    */
   String svgAnimationTagY();
 
-
   /**
    * Returns the svg end tag.
    *
    * @return String svg end tag
    */
   String svgEndTag();
+
+  /**
+   * Returns the svg dimension 1 tag.
+   *
+   * @return String svg dimension 1 tag
+   */
+  String svgD1Tag();
+
+  /**
+   * Returns the svg dimension 2 tag.
+   *
+   * @return String svg dimension 2 tag
+   */
+  String svgD2Tag();
 }

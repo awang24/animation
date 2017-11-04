@@ -15,7 +15,7 @@ public interface ITextView extends IView {
   String getDescription();
 
   /**
-   * Writes the string description out to a given text file name
+   * Writes the string description out to a given text file name.
    */
   void writeOut(String fileName);
 

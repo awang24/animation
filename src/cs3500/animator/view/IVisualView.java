@@ -15,14 +15,14 @@ public interface IVisualView extends IView {
   void makeVisible();
 
   /**
-   * Transmit an error message to the view, in case the command could not be processed correctly
+   * Transmit an error message to the view, in case the command could not be processed correctly.
    *
    * @param error String error message
    **/
   void showErrorMessage(String error);
 
   /**
-   * Signal the view to draw itself
+   * Signal the view to draw itself.
    **/
   void refresh();
 

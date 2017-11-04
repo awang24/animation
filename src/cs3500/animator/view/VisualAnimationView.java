@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 
+import cs3500.animator.model.IAnimationModel;
 import cs3500.animator.model.shape.Shapes;
 import java.util.List;
 
@@ -16,7 +17,6 @@ import java.util.List;
 public class VisualAnimationView extends JFrame implements IVisualView {
 
   private AnimationPanel animatePanel;
-  private JScrollPane scrollPane;
   private List<Shapes> shapes;
 
   /**
@@ -24,10 +24,10 @@ public class VisualAnimationView extends JFrame implements IVisualView {
    *
    * @param speed represents the speed at which the animation occurs
    */
-  public VisualAnimationView(double speed, List<Shapes> shapes) {//IAnimationModel model) {
+  public VisualAnimationView(double speed, IAnimationModel model) {
     super();
 
-    this.shapes = shapes;
+    this.shapes = model.getShapes();//shapes;
     this.setTitle("Simple Animation");
     this.setSize(700, 700);
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -37,7 +37,7 @@ public class VisualAnimationView extends JFrame implements IVisualView {
 
     animatePanel.setShapes(shapes);
 
-    scrollPane = new JScrollPane(animatePanel);
+    JScrollPane scrollPane = new JScrollPane(animatePanel);
     scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
     scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
     scrollPane.setBounds(50, 30, 300, 50);

@@ -83,14 +83,16 @@ public class ChangeDimension extends AAnimations {
     double dur = end - begin;
 
     String svg = "";
-    // x coordinate
-    svg += "<animateTransform attributeType=\"xml\" type=\"scale\" "
-            + "begin=\"" + begin + "ms\" dur=\"" + dur + "ms\" attributeName=\"transform\" "
+
+    svg += "<animate attributeType=\"xml\" type=\"scale\" "
+            + "begin=\"" + begin + "ms\" dur=\"" + dur + "ms\" attributeName=\""
+            + this.getShape().svgD1Tag() + "\" "
             + "from=\"" + this.originalD1
             + "\" to=\"" + this.newD1 + "\" fill=\"freeze\" /> \n";
 
-    svg += "<animateTransform attributeType=\"xml\" type=\"scale\" "
-            + "begin=\"" + begin + "ms\" dur=\"" + dur + "ms\" attributeName=\"transform\" "
+    svg += "<animate attributeType=\"xml\" type=\"scale\" "
+            + "begin=\"" + begin + "ms\" dur=\"" + dur + "ms\" attributeName=\""
+            + this.getShape().svgD2Tag() + "\" "
             + "from=\"" + this.originalD2
             + "\" to=\"" + this.newD2 + "\" fill=\"freeze\" />\n";
 

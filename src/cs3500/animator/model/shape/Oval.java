@@ -67,4 +67,14 @@ public class Oval extends AShape {
   public String svgEndTag() {
     return "</ellipse>";
   }
+
+  @Override
+  public String svgD1Tag() {
+    return "rx";
+  }
+
+  @Override
+  public String svgD2Tag() {
+    return "ry";
+  }
 }

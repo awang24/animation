@@ -3,6 +3,10 @@ package cs3500.animator.model;
 import java.awt.Color;
 
 import cs3500.animator.model.shape.Posn;
+import cs3500.animator.view.IView;
+import cs3500.animator.view.SVGView;
+import cs3500.animator.view.TextualView;
+import cs3500.animator.view.VisualAnimationView;
 
 /**
  * Class for static methods that are used for testing and used among different classes.
@@ -69,5 +73,26 @@ public class Utils {
    */
   public static String getPosnString(Posn p) {
     return "(" + p.getX() + ", " + p.getY() + ")";
+  }
+
+  /**
+   * Returns the appropriate view according to the view string taken in.
+   *
+   * @param view  string representation of what type of view to make
+   * @param model model for view to work on
+   * @param tempo tempo at which to set the view to
+   * @return the approrpriate view
+   * @throws IllegalArgumentException if the String view is invalid
+   */
+  public static IView createView(String view, IAnimationModel model, double tempo) {
+    if (view.equals("text")) {
+      return new TextualView(tempo, model);
+    } else if (view.equals("visual")) {
+      return new VisualAnimationView(tempo, model);
+    } else if (view.equals("svg")) {
+      return new SVGView(tempo, model);
+    } else {
+      throw new IllegalArgumentException("Invalid view type");
+    }
   }
 }

@@ -78,6 +78,7 @@ public class SimpleAnimationModelBuilder implements TweenModelBuilder<IAnimation
       Animations animation = new MoveAnimation(s, startTime, endTime, origin, dest);
       model.addAnimations(animation);
     } catch (Exception e) {
+      // do nothing
     }
     return this;
   }

@@ -3,8 +3,11 @@ import org.junit.Test;
 import java.awt.Color;
 
 
+import cs3500.animator.model.IAnimationModel;
+import cs3500.animator.model.SimpleAnimationModel;
 import cs3500.animator.model.Utils;
 import cs3500.animator.model.shape.Posn;
+import cs3500.animator.view.IView;
 
 import static org.junit.Assert.assertEquals;
 
@@ -59,6 +62,14 @@ public class UtilsTest {
   public void getPosnString() {
     assertEquals("(0.0, 0.0)", Utils.getPosnString(this.p1));
     assertEquals("(102.112, 50.5)", Utils.getPosnString(this.p2));
+  }
+
+  // Test for returning the correct view
+  @Test(expected = IllegalArgumentException.class)
+  public void createView() {
+    IAnimationModel model = new SimpleAnimationModel();
+    double tempo = 10;
+    IView text = Utils.createView("random", model, tempo);
   }
 
 }
