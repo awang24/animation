@@ -1,7 +1,8 @@
 import org.junit.Test;
 
-import cs3500.hw05.shape.Posn;
-import cs3500.hw05.Utils;
+
+import cs3500.animator.model.Utils;
+import cs3500.animator.model.shape.Posn;
 
 import static org.junit.Assert.assertEquals;
 
@@ -34,18 +35,6 @@ public class PosnTest {
     assertEquals(true, Utils.checkDoubles(102.0, 102.0));
     assertEquals(false, Utils.checkDoubles(90.0, 89.0));
     assertEquals(false, Utils.checkDoubles(2.0, 4.0));
-  }
-
-  // Test for creating invalid posn
-  @Test(expected = IllegalArgumentException.class)
-  public void testInvalidXPosn() {
-    Posn p = new Posn(-1, 0);
-  }
-
-  // Test for creating invalid posn
-  @Test(expected = IllegalArgumentException.class)
-  public void testInvalidYPosn() {
-    Posn p = new Posn(0, -1);
   }
 
 }

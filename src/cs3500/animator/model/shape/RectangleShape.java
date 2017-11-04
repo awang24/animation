@@ -51,7 +51,22 @@ public class RectangleShape extends AShape {
     return "<rect id=\"" + this.getName() + "\" x=\"" + this.getPosn().getX() + "\" y=\""
             + this.getPosn().getY() + "\" width=\"" + this.getD1() + "\" height=\"" + this.getD2()
             + "\" fill=\"rgb(" + this.getColor().getRed() + "," + this.getColor().getGreen() + ","
-            + this.getColor().getBlue() +")\" visibility=\"visible\">";
+            + this.getColor().getBlue() + ")\" visibility=\"visible\">\n";
+  }
+
+  @Override
+  public String svgAnimationTagX() {
+    return "x";
+  }
+
+  @Override
+  public String svgAnimationTagY() {
+    return "y";
+  }
+
+  @Override
+  public String svgEndTag() {
+    return "</rect>\n";
   }
 
 }

@@ -1,10 +1,6 @@
 package cs3500.animator.view;
 
-import java.util.List;
-
 import cs3500.animator.model.IAnimationModel;
-import cs3500.animator.model.animation.Animations;
-import cs3500.animator.model.shape.Shapes;
 
 /**
  * The text view interface.

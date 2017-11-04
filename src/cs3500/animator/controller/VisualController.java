@@ -36,7 +36,6 @@ public class VisualController implements IAnimationController {
 
   @Override
   public void start() {
-    //this.view.refresh();
     this.isAnimationStarted = true;
     long startTime = System.currentTimeMillis();
     long timeElapsed = 0;
@@ -73,7 +72,6 @@ public class VisualController implements IAnimationController {
         Animations current = animations.get(i);
         int start = current.getStart();
         int end = current.getEnd();
-        //this.view.setShapes(newListShapes);
 
         if (start <= unitsElapsed && end >= unitsElapsed) {
           current.animate(unitsElapsed);

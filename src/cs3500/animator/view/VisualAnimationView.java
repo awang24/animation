@@ -1,23 +1,20 @@
 package cs3500.animator.view;
 
-import java.awt.*;
 
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+import javax.swing.JOptionPane;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 
-import cs3500.animator.model.IAnimationModel;
-import cs3500.animator.model.animation.Animations;
 import cs3500.animator.model.shape.Shapes;
 import java.util.List;
 
 /**
  * Represents the view for a visual animation.
  */
-
 public class VisualAnimationView extends JFrame implements IVisualView {
 
-  //private IAnimationModel model;
-  //private JLabel display;
-  //private double speed;
   private AnimationPanel animatePanel;
   private JScrollPane scrollPane;
   private List<Shapes> shapes;
@@ -45,7 +42,6 @@ public class VisualAnimationView extends JFrame implements IVisualView {
     scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
     scrollPane.setBounds(50, 30, 300, 50);
 
-    //this.add(animatePanel, BorderLayout.CENTER);
     this.add(scrollPane, BorderLayout.CENTER);
 
     this.pack();
@@ -66,16 +62,9 @@ public class VisualAnimationView extends JFrame implements IVisualView {
     this.repaint();
   }
 
-
-
   @Override
   public void setShapes(List<Shapes> shapes) {
-    //this.shapes = shapes;
+    this.shapes = shapes;
     animatePanel.setShapes(shapes);
   }
-
-  /*@Override
-  public void setAnimations(List<Animations> animations) {
-    animatePanel.setAnimations(animations);
-  }*/
 }

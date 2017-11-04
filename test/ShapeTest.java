@@ -3,12 +3,12 @@ import org.junit.Test;
 
 import java.awt.Color;
 
-import cs3500.hw05.shape.Oval;
-import cs3500.hw05.shape.Posn;
-import cs3500.hw05.shape.RectangleShape;
-import cs3500.hw05.shape.ShapeType;
-import cs3500.hw05.shape.Shapes;
-import cs3500.hw05.Utils;
+import cs3500.animator.model.Utils;
+import cs3500.animator.model.shape.Oval;
+import cs3500.animator.model.shape.Posn;
+import cs3500.animator.model.shape.RectangleShape;
+import cs3500.animator.model.shape.ShapeType;
+import cs3500.animator.model.shape.Shapes;
 
 import static org.junit.Assert.assertEquals;
 

@@ -8,11 +8,11 @@ import cs3500.animator.model.animation.Animations;
 import cs3500.animator.model.shape.Shapes;
 
 /**
- * This is a class for a simple animation model.
+ * This is a class for a simple animation model which represents a model that processes an
+ * animation.  It implements the IAnimationModel and its operations.
  */
 
 public class SimpleAnimationModel implements IAnimationModel {
-
 
   private List<Shapes> shapes;
   private List<Animations> animations;
@@ -53,12 +53,6 @@ public class SimpleAnimationModel implements IAnimationModel {
         }
       }
     }
-
-/*    for (int i = 0; i < shapes.size(); i++) {
-      if (addShape.equals(shapes.get(i))) {
-        a.changeField(shapes.get(i));
-      }
-    }*/
 
     // Add animation in order of start time
     for (int i = 0; i < size; i++) {

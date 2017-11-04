@@ -1,7 +1,5 @@
 package cs3500.animator.model.shape;
 
-import cs3500.animator.model.Utils;
-
 /**
  * Represents a posn class of a coordinate.
  */
@@ -14,12 +12,8 @@ public class Posn {
    *
    * @param x x coordinate of the position
    * @param y y coordinate of the position
-   * @throws IllegalArgumentException if either coordinate are negative
    */
   public Posn(double x, double y) {
-   /* if (Utils.isNegative(x) || Utils.isNegative(y)) {
-      throw new IllegalArgumentException("Coordinate can not be negative");
-    }*/
     this.x = x;
     this.y = y;
   }

@@ -124,14 +124,7 @@ public abstract class AShape implements Shapes {
 
   @Override
   public void setPosn(Posn newP) {
-/*    System.out.println("");
-    System.out.println("old p x " + this.p.getX());
-    System.out.println("old p y " + this.p.getY());*/
     this.p = newP;
-/*    System.out.println("new p x " + this.p.getX());
-    System.out.println("new p y " + this.p.getY());
-    System.out.println("");*/
-
   }
 
   @Override
@@ -175,6 +168,4 @@ public abstract class AShape implements Shapes {
   public int hashCode() {
     return this.name.hashCode();
   }
-
-
 }

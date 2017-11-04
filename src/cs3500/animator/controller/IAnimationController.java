@@ -1,7 +1,5 @@
 package cs3500.animator.controller;
 
-import cs3500.animator.model.IAnimationModel;
-
 /**
  * This is the interface of the Animation controller. Classes that implement this interface only
  * need the method start to start the actual animation.

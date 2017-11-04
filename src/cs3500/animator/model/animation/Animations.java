@@ -79,12 +79,14 @@ public interface Animations {
 
   /**
    * Sets the shape of the animation to a new shape.
+   *
    * @param s shape to change the field of the animation to
    */
   void setShape(Shapes s);
 
   /**
    * Returns the svg tag representation of the animation.
+   *
    * @return svg tag string representation of the animation
    */
   String toSVGTag(double tempo);

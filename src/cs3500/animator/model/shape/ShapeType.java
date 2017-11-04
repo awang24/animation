@@ -8,6 +8,7 @@ public enum ShapeType {
 
   /**
    * Returns the string represetnation of the shape type.
+   *
    * @return String representation of the shape type
    */
   public String toString() {

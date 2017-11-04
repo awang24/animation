@@ -4,7 +4,6 @@ import java.awt.Color;
 
 import cs3500.animator.model.Utils;
 
-
 /**
  * Represents an Oval.
  */
@@ -50,7 +49,22 @@ public class Oval extends AShape {
   public String toSVGTag() {
     return "<ellipse id=\"" + this.getName() + "\" cx=\"" + this.getPosn().getX() + "\" cy=\""
             + this.getPosn().getY() + "\" rx=\"" + this.getD1() + "\" ry=\"" + this.getD2()
-            + "\" fill=\"rgb(" + this.getColor().getRed() + "," + this.getColor().getGreen() + ","
-            + this.getColor().getBlue() +")\" visibility=\"visible\">";
+            + "\" fill=\"rgb" + Utils.getNotFloatColorString(this.getColor())
+            + "\" visibility=\"visible\">\n";
+  }
+
+  @Override
+  public String svgAnimationTagX() {
+    return "cx";
+  }
+
+  @Override
+  public String svgAnimationTagY() {
+    return "cy";
+  }
+
+  @Override
+  public String svgEndTag() {
+    return "</ellipse>";
   }
 }

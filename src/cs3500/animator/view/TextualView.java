@@ -13,12 +13,13 @@ import cs3500.animator.model.Utils;
 import cs3500.animator.model.animation.Animations;
 import cs3500.animator.model.shape.Shapes;
 
+/**
+ * A class that represents a view in textual form.
+ */
 public class TextualView implements ITextView {
 
   private IAnimationModel model;
   private double tempo;
-  //private List<Shapes> shapes;
-  //private List<Animations> animations;
 
   /**
    * Constructs a {@code TextualView} object.
@@ -26,14 +27,9 @@ public class TextualView implements ITextView {
    * @param tempo represents the speed at which the animation occurs
    * @param model model that view will use
    */
-
   public TextualView(double tempo, IAnimationModel model) {
-    super();
     this.tempo = tempo;
     this.model = model;
-    //shapes = model.getShapes();
-    //animations = model.getAnimations();
-    //this.model = reader.readFile()
   }
 
   @Override
@@ -50,8 +46,6 @@ public class TextualView implements ITextView {
   public String getDescription() {
     List<Shapes> shapes = model.getShapes();
     List<Animations> animations = model.getAnimations();
-
-    //System.out.println("size of shapes: " + shapes.size() + ", size of animations: " + animations.size());
 
     String state = "Shapes:\n";
     for (int i = 0; i < shapes.size(); i++) {

@@ -168,4 +168,26 @@ public interface Shapes {
    * @return String svg representation of the shape
    */
   String toSVGTag();
+
+  /**
+   * Returns the svg tag x of the shape when animating it.
+   *
+   * @return String svg x representation of the shape when animating
+   */
+  String svgAnimationTagX();
+
+  /**
+   * Returns the svg tag y of the shape when animating it.
+   *
+   * @return String svg y representation of the shape when animating
+   */
+  String svgAnimationTagY();
+
+
+  /**
+   * Returns the svg end tag.
+   *
+   * @return String svg end tag
+   */
+  String svgEndTag();
 }

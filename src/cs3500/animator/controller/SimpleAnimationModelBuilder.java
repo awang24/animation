@@ -70,20 +70,14 @@ public class SimpleAnimationModelBuilder implements TweenModelBuilder<IAnimation
     for (int i = 0; i < loshapes.size(); i++) {
       Shapes current = loshapes.get(i);
       if (current.getName().equals(name)) {
-        //s = current;
         s = current.accept(new CreateShapeVisitor());
         s.setPosn(origin);
-        //System.out.println(name + " before add x " + s.getPosn().getX() + " y " + s.getPosn().getY());
       }
     }
     try {
-      //s.setPosn(origin);
-      //System.out.println(name + " set posn before create x " + s.getPosn().getX() + " y " + s.getPosn().getY());
       Animations animation = new MoveAnimation(s, startTime, endTime, origin, dest);
-      //System.out.println(name + " set posn after create x " + s.getPosn().getX() + " y " + s.getPosn().getY());
       model.addAnimations(animation);
     } catch (Exception e) {
-      // do nothing
     }
     return this;
   }
@@ -103,11 +97,9 @@ public class SimpleAnimationModelBuilder implements TweenModelBuilder<IAnimation
       if (current.getName().equals(name)) {
         s = current.accept(new CreateShapeVisitor());
         s.setColor(oldColor);
-        //s = current;
       }
     }
     try {
-      //s.setColor(oldColor);
       Animations animation = new ChangeColor(s, startTime, endTime, oldColor, newColor);
       model.addAnimations(animation);
     } catch (Exception e) {
@@ -128,12 +120,9 @@ public class SimpleAnimationModelBuilder implements TweenModelBuilder<IAnimation
         s = current.accept(new CreateShapeVisitor());
         s.setD1(fromSx);
         s.setD2(fromSy);
-        //s = current;
       }
     }
     try {
-      //s.setD1(fromSx);
-      //s.setD2(fromSy);
       Animations animation = new ChangeDimension(s, startTime, endTime, fromSx, fromSy, toSx, toSy);
       model.addAnimations(animation);
     } catch (Exception e) {
@@ -144,7 +133,6 @@ public class SimpleAnimationModelBuilder implements TweenModelBuilder<IAnimation
 
   @Override
   public IAnimationModel build() {
-   // System.out.println("rect x " + model.getShapes().get(0).getPosn().getX() + " y " + model.getShapes().get(0).getPosn().getY());
     return model;
   }
 }

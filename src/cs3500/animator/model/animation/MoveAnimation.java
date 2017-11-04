@@ -1,7 +1,6 @@
 package cs3500.animator.model.animation;
 
 import cs3500.animator.model.Utils;
-import cs3500.animator.model.shape.CreateShapeVisitor;
 import cs3500.animator.model.shape.Posn;
 import cs3500.animator.model.shape.Shapes;
 
@@ -24,9 +23,8 @@ public class MoveAnimation extends AAnimations {
    */
   public MoveAnimation(Shapes shape, int start, int end, Posn origin, Posn dest) {
     super(AnimationType.MOVE, shape, start, end);
-    this.origin = origin;//shape.getPosn();
+    this.origin = origin;
     this.dest = dest;
-    //shape.setPosn(dest);
   }
 
   @Override
@@ -43,9 +41,6 @@ public class MoveAnimation extends AAnimations {
     double changeInTime = (currentTime - this.getStart())
             / (double) (this.getEnd() - this.getStart());
 
-    //Shapes shape = this.getShape();
-    //Shapes newShape = shape.accept(new CreateShapeVisitor());
-
     if ((currentTime > this.getEnd()) || (currentTime < this.getStart())) {
       // doesn't do anything
     } else {
@@ -54,10 +49,8 @@ public class MoveAnimation extends AAnimations {
 
       Posn newPosn = new Posn(newX, newY);
 
-      //newShape.setPosn(newPosn);
       this.getShape().setPosn(newPosn);
     }
-    //return newShape;
   }
 
   @Override
@@ -78,5 +71,25 @@ public class MoveAnimation extends AAnimations {
   @Override
   public void changeField(Shapes s) {
     s.setPosn(this.dest);
+  }
+
+  @Override
+  public String toSVGTag(double tempo) {
+    String svg = "";
+    double begin = (this.getStart() / tempo) * 1000;
+    double end = (this.getEnd() / tempo) * 1000;
+    double dur = end - begin;
+
+    svg += "<animate attributeType=\"xml\" begin=\"" + begin + "ms\" dur=\""
+            + dur + "ms\" attributeName=\"" + this.getShape().svgAnimationTagX() + "\" "
+            + "from=\"" + this.origin.getX() + "\" to=\""
+            + this.dest.getX() + "\" fill=\"freeze\" />\n";
+
+    svg += "<animate attributeType=\"xml\" begin=\"" + begin + "ms\" dur=\""
+            + dur + "ms\" attributeName=\"" + this.getShape().svgAnimationTagY() + "\" "
+            + "from=\"" + this.origin.getY() + "\" to=\""
+            + this.dest.getY() + "\" fill=\"freeze\" />\n";
+
+    return svg;
   }
 }

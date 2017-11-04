@@ -43,14 +43,7 @@ public class TextController implements IAnimationController {
       for (int j = 0; j < shapes.size(); j++) {
         Shapes current = shapes.get(j);
         if (aName.equals(current.getName())) {
-          /*System.out.println("Should get here " + current.getName() + " x " + current.getPosn().getX()
-          + " y " + current.getPosn().getY());
-          System.out.println("Origin " + a.getBeginState());
-          System.out.println("Destination before " + a.getEndState());*/
           a.changeField(current);
-/*          System.out.println("After " + current.getName() + " x " + current.getPosn().getX()
-                  + " y " + current.getPosn().getY());
-          System.out.println("Destination after " + a.getEndState());*/
         }
       }
     }

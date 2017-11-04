@@ -1,7 +1,6 @@
 package cs3500.animator.model.animation;
 
 import cs3500.animator.model.Utils;
-import cs3500.animator.model.shape.CreateShapeVisitor;
 import cs3500.animator.model.shape.Shapes;
 
 /**
@@ -23,17 +22,16 @@ public class ChangeDimension extends AAnimations {
    * @param d1    The data to change one dimension of the shape
    * @param d2    The data to change the second dimension of the shape
    */
-  public ChangeDimension(Shapes shape, int start, int end, double beginD1, double beginD2, double d1, double d2) {
+  public ChangeDimension(Shapes shape, int start, int end, double beginD1, double beginD2,
+                         double d1, double d2) {
     super(AnimationType.CHANGEDIMENSION, shape, start, end);
     if (Utils.isNegative(d1) || Utils.isNegative(d2)) {
       throw new IllegalArgumentException("New dimensions can not be negative");
     } else {
-      this.originalD1 = beginD1;//shape.getD1();
-      this.originalD2 = beginD2;//shape.getD2();
+      this.originalD1 = beginD1;
+      this.originalD2 = beginD2;
       this.newD1 = d1;
       this.newD2 = d2;
-      //shape.setD1(d1);
-      //shape.setD2(d2);
     }
   }
 
@@ -42,11 +40,8 @@ public class ChangeDimension extends AAnimations {
     double changeD1 = this.newD1 - this.originalD1;
     double changeD2 = this.newD2 - this.originalD2;
 
-    double changeInTime = (double)(currentTime - this.getStart())
-            / (double)(this.getEnd() - this.getStart());
-
-    //Shapes shape = this.getShape();
-   // Shapes newShape = shape.accept(new CreateShapeVisitor());
+    double changeInTime = (double) (currentTime - this.getStart())
+            / (double) (this.getEnd() - this.getStart());
 
     if ((currentTime > this.getEnd()) || (currentTime < this.getStart())) {
       // do nothing
@@ -55,10 +50,7 @@ public class ChangeDimension extends AAnimations {
       double d2 = this.originalD2 + (changeInTime * changeD2);
       this.getShape().setD1(d1);
       this.getShape().setD2(d2);
-      //newShape.setD1(d1);
-      //newShape.setD2(d2);
     }
-    //return newShape;
   }
 
   @Override
@@ -92,13 +84,15 @@ public class ChangeDimension extends AAnimations {
 
     String svg = "";
     // x coordinate
-    svg += "<animateTransform attributeName=\"transform\" attributeType=\"XML\" type=\"scale\" "
-            + "begin=\"" + begin + "\" dur=\"" + dur + "\" from=\"" + this.originalD1 + "\" to=\""
-            + this.newD1 + "\" fill=\"freeze\" /> \n";
+    svg += "<animateTransform attributeType=\"xml\" type=\"scale\" "
+            + "begin=\"" + begin + "ms\" dur=\"" + dur + "ms\" attributeName=\"transform\" "
+            + "from=\"" + this.originalD1
+            + "\" to=\"" + this.newD1 + "\" fill=\"freeze\" /> \n";
 
-    svg += "<animateTransform attributeName=\"transform\" attributeType=\"XML\" type=\"scale\" "
-            + "begin=\"" + begin + "\" dur=\"" + dur + "\" from=\"" + this.originalD2 + "\" to=\""
-            + this.newD2 + "\" fill=\"freeze\" />\n";
+    svg += "<animateTransform attributeType=\"xml\" type=\"scale\" "
+            + "begin=\"" + begin + "ms\" dur=\"" + dur + "ms\" attributeName=\"transform\" "
+            + "from=\"" + this.originalD2
+            + "\" to=\"" + this.newD2 + "\" fill=\"freeze\" />\n";
 
     return svg;
   }

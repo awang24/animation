@@ -2,23 +2,24 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.Arrays;
 
-import cs3500.hw05.animation.Animations;
-import cs3500.hw05.animation.ChangeColor;
-import cs3500.hw05.animation.ChangeDimension;
-import cs3500.hw05.animation.MoveAnimation;
-import cs3500.hw05.AnimationOperations;
-import cs3500.hw05.shape.Oval;
-import cs3500.hw05.shape.Posn;
-import cs3500.hw05.shape.RectangleShape;
-import cs3500.hw05.shape.ShapeType;
-import cs3500.hw05.shape.Shapes;
-import cs3500.hw05.SimpleAnimationModel;
+import cs3500.animator.model.IAnimationModel;
+import cs3500.animator.model.SimpleAnimationModel;
+import cs3500.animator.model.animation.Animations;
+import cs3500.animator.model.animation.ChangeColor;
+import cs3500.animator.model.animation.ChangeDimension;
+import cs3500.animator.model.animation.MoveAnimation;
+import cs3500.animator.model.shape.Oval;
+import cs3500.animator.model.shape.Posn;
+import cs3500.animator.model.shape.RectangleShape;
+import cs3500.animator.model.shape.Shapes;
 
 import static junit.framework.TestCase.assertEquals;
 
 public class SimpleAnimationModelTest {
-  AnimationOperations aop;
+  IAnimationModel aop;
   Posn p1;
   Posn p2;
   Shapes oval1;
@@ -49,29 +50,27 @@ public class SimpleAnimationModelTest {
     rect2 = new RectangleShape("rectangle 2", 10, 15,
             p2, Color.BLUE, 20.0, 25.5);
 
-    changeEclipseColor = new ChangeColor(this.oval1, 5, 10, Color.RED);
-    changeRectColor = new ChangeColor(this.rect1, 5, 10, Color.PINK);
+    changeEclipseColor = new ChangeColor(this.oval1, 5, 10, Color.BLACK, Color.RED);
+    changeRectColor = new ChangeColor(this.rect1, 5, 10, Color.BLACK, Color.PINK);
     changeEclipseDimension =
-            new ChangeDimension(this.oval2, 11, 12, 15.5, 15.5);
-    changeRectDimension = new ChangeDimension(this.rect2, 11, 12, 15.5, 15.5);
-    moveEclipse = new MoveAnimation(this.oval1, 8, 10, this.p2);
-    moveRect = new MoveAnimation(this.rect1, 8, 10, this.p2);
+            new ChangeDimension(this.oval2, 11, 12, 20.0, 25.5, 15.5, 15.5);
+    changeRectDimension = new ChangeDimension(this.rect2, 11, 12, 20.0, 25.5, 15.5, 15.5);
+    moveEclipse = new MoveAnimation(this.oval1, 8, 10, this.p1, this.p2);
+    moveRect = new MoveAnimation(this.rect1, 8, 10, this.p1, this.p2);
   }
 
   // Test for adding shape to model
   @Test
   public void addShape() {
     assertEquals("Shapes:\n", this.aop.getDescription());
-    this.aop.addShape(ShapeType.RECTANGLE, "rectangle 1", 0, 10, 0.0,
-            0.0, Color.BLACK, 10.0, 10.0);
+    this.aop.addShape(this.rect1);
     assertEquals("Shapes:\n"
             + "Name: rectangle 1\n"
             + "Type: rectangle\n"
             + "Lower-left corner: (0.0, 0.0), Width: 10.0, Height: 10.0, Color: (0.0,0.0,0.0)\n"
             + "Appears at t=0\n"
             + "Disappears at t=10\n\n", this.aop.getDescription());
-    this.aop.addShape(ShapeType.OVAL, "oval 2", 10, 15, 102.112,
-            50.5, Color.BLUE, 20.0, 25.5);
+    this.aop.addShape(this.oval2);
     assertEquals("Shapes:\n"
             + "Name: rectangle 1\n"
             + "Type: rectangle\n"
@@ -152,10 +151,8 @@ public class SimpleAnimationModelTest {
   @Test
   public void getDescription() {
     assertEquals("Shapes:\n", this.aop.getDescription());
-    this.aop.addShape(ShapeType.RECTANGLE, "rectangle 1", 0, 10, 0.0,
-            0.0, Color.BLACK, 10.0, 10.0);
-    this.aop.addShape(ShapeType.OVAL, "oval 2", 10, 15, 102.112,
-            50.5, Color.BLUE, 20.0, 25.5);
+    this.aop.addShape(this.rect1);
+    this.aop.addShape(this.oval2);
     this.aop.addAnimations(this.changeEclipseColor);
     this.aop.addAnimations(this.changeEclipseDimension);
     this.aop.addAnimations(this.moveEclipse);
@@ -179,6 +176,28 @@ public class SimpleAnimationModelTest {
                     + "shape oval 2 scales from X radius: 20.0, Y radius: 25.5 to "
                     + "X radius: 15.5, Y radius: 15.5 from t=11 to t=12\n",
             this.aop.getDescription());
+  }
+
+  // Test for getting the list of shapes
+  @Test
+  public void getShapes() {
+    this.aop.addShape(this.rect1);
+    this.aop.addShape(this.oval2);
+    this.aop.addAnimations(this.changeEclipseColor);
+    this.aop.addAnimations(this.changeEclipseDimension);
+    assertEquals(new ArrayList<Shapes>(Arrays.asList(this.rect1, this.oval2)), this.aop.getShapes());
+  }
+
+  // Test for getting the list of animations
+  @Test
+  public void getAnimations() {
+    this.aop.addShape(this.rect1);
+    this.aop.addShape(this.oval2);
+    this.aop.addAnimations(this.changeEclipseColor);
+    this.aop.addAnimations(this.changeEclipseDimension);
+    assertEquals(new ArrayList<Animations>
+                    (Arrays.asList(this.changeEclipseColor, this.changeEclipseDimension)),
+            this.aop.getAnimations());
   }
 
 }

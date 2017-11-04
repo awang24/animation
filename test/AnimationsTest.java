@@ -3,16 +3,16 @@ import org.junit.Test;
 
 import java.awt.Color;
 
-import cs3500.hw05.animation.AnimationType;
-import cs3500.hw05.animation.Animations;
-import cs3500.hw05.animation.ChangeColor;
-import cs3500.hw05.animation.ChangeDimension;
-import cs3500.hw05.animation.MoveAnimation;
-import cs3500.hw05.shape.Oval;
-import cs3500.hw05.shape.Posn;
-import cs3500.hw05.shape.RectangleShape;
-import cs3500.hw05.shape.Shapes;
-import cs3500.hw05.Utils;
+import cs3500.animator.model.Utils;
+import cs3500.animator.model.animation.AnimationType;
+import cs3500.animator.model.animation.Animations;
+import cs3500.animator.model.animation.ChangeColor;
+import cs3500.animator.model.animation.ChangeDimension;
+import cs3500.animator.model.animation.MoveAnimation;
+import cs3500.animator.model.shape.Oval;
+import cs3500.animator.model.shape.Posn;
+import cs3500.animator.model.shape.RectangleShape;
+import cs3500.animator.model.shape.Shapes;
 
 import static org.junit.Assert.assertEquals;
 
@@ -45,13 +45,13 @@ public class AnimationsTest {
     rect2 = new RectangleShape("rectangle 2", 10, 15,
             p2, Color.BLUE, 20.0, 25.5);
 
-    changeEclipseColor = new ChangeColor(this.oval1, 5, 10, Color.RED);
-    changeRectColor = new ChangeColor(this.rect1, 5, 10, Color.PINK);
+    changeEclipseColor = new ChangeColor(this.oval1, 5, 10, Color.BLACK, Color.RED);
+    changeRectColor = new ChangeColor(this.rect1, 5, 10, Color.BLACK, Color.PINK);
     changeEclipseDimension =
-            new ChangeDimension(this.oval2, 11, 12, 15.5, 15.5);
-    changeRectDimension = new ChangeDimension(this.rect2, 11, 12, 15.5, 15.5);
-    moveEclipse = new MoveAnimation(this.oval1, 8, 10, this.p2);
-    moveRect = new MoveAnimation(this.rect1, 8, 10, this.p2);
+            new ChangeDimension(this.oval2, 11, 12, 20.0, 25.5, 15.5, 15.5);
+    changeRectDimension = new ChangeDimension(this.rect2, 11, 12, 20.0, 25.5, 15.5, 15.5);
+    moveEclipse = new MoveAnimation(this.oval1, 8, 10, this.p1, this.p2);
+    moveRect = new MoveAnimation(this.rect1, 8, 10, this.p1, this.p2);
 
   }
 
@@ -60,31 +60,31 @@ public class AnimationsTest {
   public void animteChangeColor() {
     assertEquals("(0.0,0.0,0.0)",
             Utils.getColorString(this.changeEclipseColor.getShape().getColor()));
-    this.changeEclipseColor.animte(4);
+    this.changeEclipseColor.animate(4);
     assertEquals("(0.0,0.0,0.0)",
             Utils.getColorString(this.changeEclipseColor.getShape().getColor()));
-    this.changeEclipseColor.animte(7);
+    this.changeEclipseColor.animate(7);
     assertEquals("(0.4,0.0,0.0)",
             Utils.getColorString(this.changeEclipseColor.getShape().getColor()));
-    this.changeEclipseColor.animte(10);
+    this.changeEclipseColor.animate(10);
     assertEquals("(1.0,0.0,0.0)",
             Utils.getColorString(this.changeEclipseColor.getShape().getColor()));
-    this.changeEclipseColor.animte(12);
+    this.changeEclipseColor.animate(12);
     assertEquals("(1.0,0.0,0.0)",
             Utils.getColorString(this.changeEclipseColor.getShape().getColor()));
 
     assertEquals("(0.0,0.0,0.0)",
             Utils.getColorString(this.changeRectColor.getShape().getColor()));
-    this.changeRectColor.animte(4);
+    this.changeRectColor.animate(4);
     assertEquals("(0.0,0.0,0.0)",
             Utils.getColorString(this.changeRectColor.getShape().getColor()));
-    this.changeRectColor.animte(7);
+    this.changeRectColor.animate(7);
     assertEquals("(0.4,0.27450982,0.27450982)",
             Utils.getColorString(this.changeRectColor.getShape().getColor()));
-    this.changeRectColor.animte(10);
+    this.changeRectColor.animate(10);
     assertEquals("(1.0,0.6862745,0.6862745)",
             Utils.getColorString(this.changeRectColor.getShape().getColor()));
-    this.changeRectColor.animte(12);
+    this.changeRectColor.animate(12);
     assertEquals("(1.0,0.6862745,0.6862745)",
             Utils.getColorString(this.changeRectColor.getShape().getColor()));
   }
@@ -94,31 +94,31 @@ public class AnimationsTest {
   public void animateChangeDimension() {
     assertEquals("X radius: 20.0, Y radius: 25.5",
             this.changeEclipseDimension.getShape().getDimensions());
-    this.changeEclipseDimension.animte(7);
+    this.changeEclipseDimension.animate(7);
     assertEquals("X radius: 20.0, Y radius: 25.5",
             this.changeEclipseDimension.getShape().getDimensions());
-    this.changeEclipseDimension.animte(11);
+    this.changeEclipseDimension.animate(11);
     assertEquals("X radius: 20.0, Y radius: 25.5",
             this.changeEclipseDimension.getShape().getDimensions());
-    this.changeEclipseDimension.animte(12);
+    this.changeEclipseDimension.animate(12);
     assertEquals("X radius: 15.5, Y radius: 15.5",
             this.changeEclipseDimension.getShape().getDimensions());
-    this.changeEclipseDimension.animte(14);
+    this.changeEclipseDimension.animate(14);
     assertEquals("X radius: 15.5, Y radius: 15.5",
             this.changeEclipseDimension.getShape().getDimensions());
 
     assertEquals("Width: 20.0, Height: 25.5",
             this.changeRectDimension.getShape().getDimensions());
-    this.changeRectDimension.animte(7);
+    this.changeRectDimension.animate(7);
     assertEquals("Width: 20.0, Height: 25.5",
             this.changeRectDimension.getShape().getDimensions());
-    this.changeRectDimension.animte(11);
+    this.changeRectDimension.animate(11);
     assertEquals("Width: 20.0, Height: 25.5",
             this.changeRectDimension.getShape().getDimensions());
-    this.changeRectDimension.animte(12);
+    this.changeRectDimension.animate(12);
     assertEquals("Width: 15.5, Height: 15.5",
             this.changeRectDimension.getShape().getDimensions());
-    this.changeRectDimension.animte(14);
+    this.changeRectDimension.animate(14);
     assertEquals("Width: 15.5, Height: 15.5",
             this.changeRectDimension.getShape().getDimensions());
   }
@@ -128,31 +128,31 @@ public class AnimationsTest {
   public void animteMove() {
     assertEquals("(0.0, 0.0)",
             Utils.getPosnString(this.moveEclipse.getShape().getPosn()));
-    this.moveEclipse.animte(7);
+    this.moveEclipse.animate(7);
     assertEquals("(0.0, 0.0)",
             Utils.getPosnString(this.moveEclipse.getShape().getPosn()));
-    this.moveEclipse.animte(9);
+    this.moveEclipse.animate(9);
     assertEquals("(51.056, 25.25)",
             Utils.getPosnString(this.moveEclipse.getShape().getPosn()));
-    this.moveEclipse.animte(10);
+    this.moveEclipse.animate(10);
     assertEquals("(102.112, 50.5)",
             Utils.getPosnString(this.moveEclipse.getShape().getPosn()));
-    this.moveEclipse.animte(12);
+    this.moveEclipse.animate(12);
     assertEquals("(102.112, 50.5)",
             Utils.getPosnString(this.moveEclipse.getShape().getPosn()));
 
     assertEquals("(0.0, 0.0)",
             Utils.getPosnString(this.moveRect.getShape().getPosn()));
-    this.moveRect.animte(7);
+    this.moveRect.animate(7);
     assertEquals("(0.0, 0.0)",
             Utils.getPosnString(this.moveRect.getShape().getPosn()));
-    this.moveRect.animte(9);
+    this.moveRect.animate(9);
     assertEquals("(51.056, 25.25)",
             Utils.getPosnString(this.moveRect.getShape().getPosn()));
-    this.moveRect.animte(10);
+    this.moveRect.animate(10);
     assertEquals("(102.112, 50.5)",
             Utils.getPosnString(this.moveRect.getShape().getPosn()));
-    this.moveRect.animte(12);
+    this.moveRect.animate(12);
     assertEquals("(102.112, 50.5)",
             Utils.getPosnString(this.moveRect.getShape().getPosn()));
   }
@@ -258,19 +258,59 @@ public class AnimationsTest {
   // Test for creating invalid animation
   @Test(expected = IllegalArgumentException.class)
   public void testNegativeStart() {
-    Animations a = new ChangeColor(this.oval1, -5, 10, Color.RED);
+    Animations a = new ChangeColor(this.oval1, -5, 10, Color.black, Color.RED);
   }
 
   // Test for creating invalid animation
   @Test(expected = IllegalArgumentException.class)
   public void testNegativeEnd() {
-    Animations a = new ChangeColor(this.oval1, 5, -10, Color.RED);
+    Animations a = new ChangeColor(this.oval1, 5, -10, Color.BLACK, Color.RED);
   }
 
   // Test for creating invalid animation
   @Test(expected = IllegalArgumentException.class)
   public void testEndBeforeStart() {
-    Animations a = new ChangeColor(this.oval1, 5, 2, Color.RED);
+    Animations a = new ChangeColor(this.oval1, 5, 2, Color.black, Color.RED);
+  }
+
+  // Test for returning the correct svg tags
+  @Test
+  public void testToSVGTag() {
+    // test for changing color
+    assertEquals("<animate attributeType=\"xml\" begin=\"500.0ms\" "
+                    + "dur=\"500.0ms\" attributeName=\"fill\" from=\"rgb(0,0,0)\" to=\"rgb(255,0,0)\" "
+                    + "fill=\"freeze\" />\n",
+            this.changeEclipseColor.toSVGTag(10));
+    assertEquals("<animate attributeType=\"xml\" begin=\"500.0ms\" dur=\"500.0ms\" "
+                    + "attributeName=\"fill\" from=\"rgb(0,0,0)\" "
+                    + "to=\"rgb(255,175,175)\" fill=\"freeze\" />\n",
+            this.changeRectColor.toSVGTag(10));
+
+    // test for changing dimension
+    assertEquals("<animateTransform attributeType=\"xml\" type=\"scale\" "
+            + "begin=\"1100.0ms\" dur=\"100.0ms\" attributeName=\"transform\" from=\"20.0\" "
+            + "to=\"15.5\" fill=\"freeze\" /> \n"
+            + "<animateTransform attributeType=\"xml\" type=\"scale\" begin=\"1100.0ms\" "
+            + "dur=\"100.0ms\" attributeName=\"transform\" from=\"25.5\" "
+            + "to=\"15.5\" fill=\"freeze\" />\n", this.changeEclipseDimension.toSVGTag(10));
+    assertEquals("<animateTransform attributeType=\"xml\" type=\"scale\" "
+            + "begin=\"1100.0ms\" dur=\"100.0ms\" attributeName=\"transform\" from=\"20.0\" "
+            + "to=\"15.5\" fill=\"freeze\" /> \n"
+            + "<animateTransform attributeType=\"xml\" type=\"scale\" begin=\"1100.0ms\" "
+            + "dur=\"100.0ms\" attributeName=\"transform\" from=\"25.5\" "
+            + "to=\"15.5\" fill=\"freeze\" />\n", this.changeRectDimension.toSVGTag(10));
+
+    // test for moving
+    assertEquals("<animate attributeType=\"xml\" begin=\"800.0ms\" dur=\"200.0ms\" "
+                    + "attributeName=\"x\" from=\"0.0\" to=\"102.112\" fill=\"freeze\" />\n"
+                    + "<animate attributeType=\"xml\" begin=\"800.0ms\" dur=\"200.0ms\" "
+                    + "attributeName=\"y\" from=\"0.0\" to=\"50.5\" fill=\"freeze\" />\n",
+            this.moveRect.toSVGTag(10));
+    assertEquals("<animate attributeType=\"xml\" begin=\"800.0ms\" dur=\"200.0ms\" "
+                    + "attributeName=\"cx\" from=\"0.0\" to=\"102.112\" fill=\"freeze\" />\n"
+                    + "<animate attributeType=\"xml\" begin=\"800.0ms\" dur=\"200.0ms\" "
+                    + "attributeName=\"cy\" from=\"0.0\" to=\"50.5\" fill=\"freeze\" />\n",
+            this.moveEclipse.toSVGTag(10));
   }
 
 }

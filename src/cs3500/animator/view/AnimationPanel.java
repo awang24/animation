@@ -1,27 +1,32 @@
 package cs3500.animator.view;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.*;
+import javax.swing.JPanel;
 
-import cs3500.animator.model.animation.Animations;
-import cs3500.animator.model.shape.CreateShapeVisitor;
 import cs3500.animator.model.shape.Posn;
 import cs3500.animator.model.shape.ShapeType;
 import cs3500.animator.model.shape.Shapes;
 
+/**
+ * A class to represent a panel on which to draw animations.
+ */
 public class AnimationPanel extends JPanel {
 
   private List<Shapes> shapes;
-  //private List<Animations> animations;
+
+  /**
+   * Constructs a {@code AnimationPanel} object.
+   */
 
   public AnimationPanel() {
     super();
     shapes = new ArrayList<Shapes>();
-    //animations = new ArrayList<Animations>();
     this.setBackground(Color.WHITE);
   }
 
@@ -33,12 +38,7 @@ public class AnimationPanel extends JPanel {
 
     g2d.setColor(Color.BLACK);
 
-    // Changes the origin to bottom left
     AffineTransform originalTransform = g2d.getTransform();
-
-    //g2d.translate(0, -this.getHeight());
-    //g2d.translate(0, this.getPreferredSize().getHeight());
-    //g2d.scale(1, -1);
 
     for (Shapes s : shapes) {
       Posn p = s.getPosn();
@@ -51,12 +51,10 @@ public class AnimationPanel extends JPanel {
         g2d.setColor(c);
         g2d.fillOval(x, y, d1, d2);
         g2d.drawOval(x, y, d1, d2);
-        //System.out.println("oval x " + x + " y " + y);
       } else if (s.getShapeType().equals(ShapeType.RECTANGLE)) {
         g2d.setColor(c);
         g2d.fillRect(x, y, d1, d2);
         g2d.drawRect(x, y, d1, d2);
-        //System.out.println("rectangle x " + x + " y " + y);
       }
     }
 
@@ -65,16 +63,5 @@ public class AnimationPanel extends JPanel {
 
   public void setShapes(List<Shapes> shapes) {
     this.shapes = shapes;
-    /*List<Shapes> newList = new ArrayList<Shapes>();
-
-    for (int i = 0; i < shapes.size(); i++) {
-      Shapes newShape = shapes.get(i).accept(new CreateShapeVisitor());
-      newList.add(newShape);
-    }
-    this.shapes = newList;*/
   }
-
-/*  public void setAnimations(List<Animations> animations) {
-    this.animations = animations;
-  }*/
 }

@@ -2,8 +2,9 @@ import org.junit.Test;
 
 import java.awt.Color;
 
-import cs3500.hw05.shape.Posn;
-import cs3500.hw05.Utils;
+
+import cs3500.animator.model.Utils;
+import cs3500.animator.model.shape.Posn;
 
 import static org.junit.Assert.assertEquals;
 
@@ -43,6 +44,14 @@ public class UtilsTest {
     assertEquals("(0.0,1.0,1.0)", Utils.getColorString(Color.CYAN));
     assertEquals("(1.0,0.0,0.0)", Utils.getColorString(Color.RED));
     assertEquals("(0.2509804,0.2509804,0.2509804)", Utils.getColorString(Color.DARK_GRAY));
+  }
+
+  // Test for getting the string representation of the color in integer format
+  @Test
+  public void getNonFloatColorString() {
+    assertEquals("(0,0,255)", Utils.getNotFloatColorString(Color.BLUE));
+    assertEquals("(0,255,0)", Utils.getNotFloatColorString(Color.GREEN));
+    assertEquals("(255,0,0)", Utils.getNotFloatColorString(Color.RED));
   }
 
   // Test for getting the string representation of the posn
